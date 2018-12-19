@@ -45,7 +45,7 @@
       </v-flex>
     </v-toolbar>
     <!-- 中间主页面 -->
-    <v-content class="px-0 pt-0">
+    <v-content class="pa-0 ma-0">
       <!--定义一个路由锚点,Layout的子组件内容将在这里展示-->
       <router-view/>
     </v-content>

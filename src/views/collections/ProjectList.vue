@@ -44,7 +44,9 @@
   import cascader from '../../components/Cascader.vue'
 
   export default {
-    components: {cascader},
+    components: {
+      cascader
+    },
     data () {
       return {
         totalProjects: 0,
