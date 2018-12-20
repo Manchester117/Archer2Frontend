@@ -1,0 +1,196 @@
+<template>
+  <v-layout row wrap class="pa-3">
+    <v-flex xs5>
+      <v-card class="panel" height="840px">
+        <div class="panel__heading">
+          <h3>Service-Interface-Collection</h3>
+        </div>
+        <div class="panel__body">
+          <vddl-list class="panel__body--list"
+            :list="serviceCollection"
+            :inserted="inserted"
+            effect-allowed="copy"
+            :disable-if="disable"
+            :external-sources="true">
+            <list v-for="(item, index) in serviceCollection"
+              :key="item.id"
+              :item="item"
+              :list="serviceCollection"
+              :index="index"
+              :selected="handleSelected"
+              :selected-item="selectedItem"
+              :disable="disable">
+              <vddl-nodrag class="panel__heading">
+              </vddl-nodrag>
+            </list>
+          </vddl-list>
+        </div>
+      </v-card>
+    </v-flex>
+    <v-divider vertical></v-divider>
+    <v-flex xs5>
+      <v-card class="panel" height="840px">
+        <div class="panel__heading">
+          <h3>Interface Sequence</h3>
+        </div>
+        <div class="panel__body">
+          <vddl-list class="panel__body--list"
+              :list="interfaceList"
+              :inserted="handleInserted"
+              :dragover="handleDragover"
+              :drop="handleDrop"
+              :horizontal="false"
+              style="height: 840px">
+            <vddl-draggable class="panel__body--item" v-for="(item, index) in interfaceList" :key="item.id"
+              :draggable="item"
+              :index="index"
+              :wrapper="interfaceList"
+              effect-allowed="copy"
+              :selected="selectedEvent"
+              :dragstart="handleDragstart"
+              :dragend="handleDragend"
+              :canceled="handleCanceled"
+              :moved="handleMoved"
+              v-bind:class="{'selected': selected === item}">
+              {{item.type}}&nbsp;{{item.id}}
+            </vddl-draggable>
+            <!-- 去掉自定义占位符 -->
+            <!-- <vddl-placeholder class="red">Custom placeholder</vddl-placeholder> -->
+          </vddl-list>
+        </div>
+      </v-card>
+    </v-flex>
+    <v-flex xs2></v-flex>
+  </v-layout>
+</template>
+
+<script>
+import list from './NestedList2.vue';
+
+export default {
+  data() {
+    return {
+      // allowedTypes: ["item"],
+
+      interfaceList: [],
+      selected: null,
+
+      selectedItem: null,
+      disable: false,
+      serviceCollection: [
+        {
+          "type": "item",
+          "id": 7
+        },
+        {
+          "type": "item",
+          "id": "8"
+        },
+        {
+          "type": "container",
+          "id": "2",
+          "columns": [
+            {
+              "type": "item",
+              "id": "9"
+            },
+            {
+              "type": "item",
+              "id": "10"
+            },
+            {
+              "type": "container",
+              "id": "3",
+              "columns": [
+                {
+                  "type": "item",
+                  "id": "13"
+                },
+                {
+                  "type": "item",
+                  "id": "14"
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "id": "15"
+            },
+            {
+              "type": "item",
+              "id": "16"
+            },
+            {
+              "type": "item",
+              "id": "17"
+            },
+            {
+              "type": "item",
+              "id": "18"
+            },
+            {
+              "type": "item",
+              "id": "19"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  methods: {
+    // Nest
+    copied(item){
+      item.id++;
+    },
+    inserted(data){
+      console.log(data);
+    },
+    toggleDisable() {
+      this.disable = !this.disable;
+    },
+    handleSelected(item) {
+      this.selectedItem = item;
+    },
+
+    // List
+    selectedEvent: function(item){
+      this.selected = item;
+    },
+    handleDragstart() {
+      console.log(':v-draggable: dragstart');
+    },
+    handleDragend() {
+      console.log(':v-draggable: dragend');
+    },
+    handleCanceled() {
+      console.log(':v-draggable: canceled');
+    },
+    handleInserted() {
+      console.log(':v-list: inserted');
+    },
+    handleDrop(data) {
+      console.log(':v-list: drop');
+      console.log(data);
+      const { index, list, item } = data;
+      // change the id
+      item.id = new Date().getTime();
+      list.splice(index, 0, item);
+    },
+    handleMoved(item) {
+      console.log(':v-draggable: moved');
+      console.log(item);
+      const { index, list } = item;
+      list.splice(index, 1);
+    },
+    handleDragover() {
+      console.log(':v-list: handleDragover');
+    },
+  },
+  components: {
+    list
+  }
+}
+</script>
+
+<style lang="less">
+</style>

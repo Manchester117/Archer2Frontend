@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'                                             // 引入Vuetify
 import HappyScroll from 'vue-happy-scroll'                                // 引入Vue的滚动条
+import Vddl from 'vddl'
 
 import './plugins/vuetify'                                                // 引入Vuetify的插件
 import 'vuetify/dist/vuetify.min.css'                                     // 引入vuetify的css样式
@@ -12,6 +13,7 @@ import './registerServiceWorker'
 
 Vue.use(Vuetify)
 Vue.use(HappyScroll)
+Vue.use(Vddl)
 
 Vue.config.productionTip = false
 

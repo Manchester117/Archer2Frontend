@@ -21,3 +21,12 @@ export default {
   // }
 }
 </script>
+
+<style lang="less">
+@import '../styles/index.less';
+
+.main {
+  min-height: 350px;
+  padding-bottom: 30px;
+}
+</style>

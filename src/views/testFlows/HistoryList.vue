@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <select-tree></select-tree>
+    <nest-service-tree></nest-service-tree>
   </v-card>
 </template>
 
 <script>
-  import SelectTree from '../../components/selecttree/SelectTree'
+  import NestServiceTree from '../../components/nestservicetree/NestServiceTree'
 
   export default {
-    components: { SelectTree }
+    components: { NestServiceTree }
   }
 </script>
