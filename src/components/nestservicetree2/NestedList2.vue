@@ -1,7 +1,8 @@
 <template lang="html">
   <!-- effect-allowed 拖动元素的模式有三种: copy/move/copyMove-->
   <!-- disable-if 类型-bool-是否禁用元素拖动: true禁用拖拽/false启用拖拽-->
-  <!--  -->
+  <!-- 使用allowed-types指定允许拖入的元素类型 -->
+  <!-- 使用type指定当前元素的类型 -->
   <vddl-draggable class="panel__body--item"
     effect-allowed="copy"
     :draggable="item"
@@ -11,7 +12,7 @@
     :selected="selectedEvent"
     :wrapper="list"
     v-bind:class="{'selected': selectedItem === item}">
-    <div class="panel padding" v-if="item.type === 'container'">
+    <v-card class="panel padding" v-if="item.type === 'container'">
       <div class="panel__heading">
         <h3 class="nodrag">Container {{item.id}}</h3>
       </div>
@@ -30,7 +31,7 @@
           :disable="disable">
         </list>
       </vddl-list>
-    </div>
+    </v-card>
     <p v-else>
       {{item.type}} {{item.id}}
     </p>
@@ -46,10 +47,14 @@ export default {
       if (typeof(this.selected) === 'function') {
         this.selected(item);
       }
+    },
+    showItem() {
+      return isShowItem = !isShowItem
     }
   },
   data() {
     return {
+      isShowItem: false,
       allowedTypesForTree: [],
     }
   }
@@ -57,6 +62,10 @@ export default {
 </script>
 
 <style lang="less">
+.toggle-box {
+  display: none;
+}
+
 .nodrag{
   flex: 1;
   display: flex;

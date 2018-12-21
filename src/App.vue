@@ -14,11 +14,6 @@ export default {
   components: {
     Layout
   },
-  // data () {
-  //   return {
-  //     //
-  //   }
-  // }
 }
 </script>
 

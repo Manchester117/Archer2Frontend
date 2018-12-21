@@ -1,7 +1,8 @@
 <template>
   <v-layout row wrap class="pa-3">
     <v-flex xs5>
-      <v-card class="panel" height="840px">
+      <!-- overflow-y:scroll 增加滚动条 -->
+      <v-card class="panel" height="845px" style="overflow-y:scroll">
         <div class="panel__heading">
           <h3>Service-Interface-Collection</h3>
         </div>
@@ -21,8 +22,6 @@
               :selected="handleSelected"
               :selected-item="selectedItem"
               :disable="disable">
-              <vddl-nodrag class="panel__heading">
-              </vddl-nodrag>
             </list>
           </vddl-list>
         </div>
@@ -30,7 +29,7 @@
     </v-flex>
     <v-divider vertical></v-divider>
     <v-flex xs5>
-      <v-card class="panel" height="840px">
+      <v-card class="panel" height="845px" style="overflow-y:scroll">
         <div class="panel__heading">
           <h3>Interface Sequence</h3>
         </div>
@@ -42,7 +41,7 @@
               :drop="handleDrop"
               :horizontal="false"
               :allowed-types="allowedTypesForList"
-              style="height: 840px">
+              style="height: 845px">
             <vddl-draggable class="panel__body--item" v-for="(item, index) in interfaceList" :key="item.id"
               :draggable="item"
               :index="index"
@@ -56,7 +55,7 @@
               v-bind:class="{'selected': selected === item}">
               {{item.type}}&nbsp;{{item.id}}
             </vddl-draggable>
-            <!-- 去掉自定义占位符 -->
+            <!-- 去掉自定义占位符,防止无法正常添加item -->
             <!-- <vddl-placeholder class="red">Custom placeholder</vddl-placeholder> -->
           </vddl-list>
         </div>
