@@ -2,7 +2,7 @@
   <v-layout row wrap class="pa-3">
     <v-flex xs5>
       <!-- overflow-y:scroll 增加滚动条 -->
-      <v-card class="panel" height="845px" style="overflow-y:scroll">
+      <v-card class="panel" height="845px" style="overflow-y:scroll" expand>
         <div class="panel__heading">
           <h3>Service-Interface-Collection</h3>
         </div>
@@ -46,7 +46,8 @@
               :draggable="item"
               :index="index"
               :wrapper="interfaceList"
-              effect-allowed="copy"
+              effect-allowed="move"
+              :type="item.type"
               :selected="selectedEvent"
               :dragstart="handleDragstart"
               :dragend="handleDragend"
@@ -61,7 +62,18 @@
         </div>
       </v-card>
     </v-flex>
-    <v-flex xs2></v-flex>
+    <v-flex d-flex>
+      <v-card class="ashcan" height="845px">
+        <div class="panel panel--info">
+          <div class="panel__heading">
+            <h3>Trash</h3>
+          </div>
+          <vddl-list :list="[]" class="panel__body">
+            <img class="ashcan-logo" src="../../assets/ashcan.png" alt="" />
+          </vddl-list>
+        </div>
+      </v-card>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -171,7 +183,7 @@ export default {
     }
   },
   methods: {
-    // Nest
+    // NestTree的方法
     copied(item){
       item.id++;
     },
@@ -185,7 +197,7 @@ export default {
       this.selectedItem = item;
     },
 
-    // List
+    // List的方法
     selectedEvent: function(item){
       this.selected = item;
     },
@@ -226,4 +238,14 @@ export default {
 </script>
 
 <style lang="less">
+.ashcan{
+  .ashcan-logo{
+    display: block;
+    width: 40px;
+    margin: 10px auto;
+  }
+  .vddl-placeholder {
+    display: none;
+  }
+}
 </style>
