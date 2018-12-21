@@ -14,7 +14,8 @@
     v-bind:class="{'selected': selectedItem === item}">
     <v-card class="panel padding" v-if="item.type === 'container'">
       <div class="panel__heading">
-        <h3 class="nodrag">Container {{item.id}}</h3>
+        <!-- <h3>Container {{item.id}}</h3> -->
+        <h3><a href="javascript:;">Container {{item.id}}</a></h3>
       </div>
       <vddl-list class="panel__body"
         :list="item.columns"
