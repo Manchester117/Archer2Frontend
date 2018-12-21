@@ -2,7 +2,7 @@
   <v-layout row wrap class="pa-3">
     <v-flex xs5>
       <!-- overflow-y:scroll 增加滚动条 -->
-      <v-card class="panel" height="845px" style="overflow-y:scroll" expand>
+      <v-card class="panel" height="845px" style="overflow-y:scroll">
         <div class="panel__heading">
           <h3>Service-Interface-Collection</h3>
         </div>
