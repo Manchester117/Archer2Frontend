@@ -11,7 +11,8 @@
             :inserted="inserted"
             effect-allowed="copy"
             :disable-if="disable"
-            :external-sources="true">
+            :external-sources="true"
+            :allowed-types="allowedTypesForTree">
             <list v-for="(item, index) in serviceCollection"
               :key="item.id"
               :item="item"
@@ -40,6 +41,7 @@
               :dragover="handleDragover"
               :drop="handleDrop"
               :horizontal="false"
+              :allowed-types="allowedTypesForList"
               style="height: 840px">
             <vddl-draggable class="panel__body--item" v-for="(item, index) in interfaceList" :key="item.id"
               :draggable="item"
@@ -70,13 +72,15 @@ import list from './NestedList2.vue';
 export default {
   data() {
     return {
-      // allowedTypes: ["item"],
-
       interfaceList: [],
       selected: null,
+      allowedTypesForList: [
+        "item"
+      ],
 
       selectedItem: null,
       disable: false,
+      allowedTypesForTree: [],
       serviceCollection: [
         {
           "type": "item",
@@ -109,28 +113,58 @@ export default {
                 {
                   "type": "item",
                   "id": "14"
+                },
+                {
+                  "type": "container",
+                  "id": "4",
+                  "columns": [
+                    {
+                      "type": "item",
+                      "id": "15"
+                    },
+                    {
+                      "type": "item",
+                      "id": "16"
+                    },
+                    {
+                      "type": "item",
+                      "id": "17"
+                    },
+                    {
+                      "type": "item",
+                      "id": "18"
+                    },
+                    {
+                      "type": "item",
+                      "id": "19"
+                    }
+                  ]
                 }
               ]
             },
             {
               "type": "item",
-              "id": "15"
+              "id": "20"
             },
             {
               "type": "item",
-              "id": "16"
+              "id": "21"
             },
             {
               "type": "item",
-              "id": "17"
+              "id": "22"
             },
             {
               "type": "item",
-              "id": "18"
+              "id": "23"
             },
             {
               "type": "item",
-              "id": "19"
+              "id": "24"
+            },
+            {
+              "type": "item",
+              "id": "25"
             }
           ]
         }

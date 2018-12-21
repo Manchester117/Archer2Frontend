@@ -5,6 +5,7 @@
   <vddl-draggable class="panel__body--item"
     effect-allowed="copy"
     :draggable="item"
+    :type="item.type"
     :index="index"
     :disable-if="disable"
     :selected="selectedEvent"
@@ -18,6 +19,7 @@
         :list="item.columns"
         :disable-if="disable"
         :external-sources="true"
+        :allowed-types="allowedTypesForTree"
         >
         <list v-for="(col, number) in item.columns"
           :key="col.id" :item="col"
@@ -44,6 +46,11 @@ export default {
       if (typeof(this.selected) === 'function') {
         this.selected(item);
       }
+    }
+  },
+  data() {
+    return {
+      allowedTypesForTree: [],
     }
   }
 };
